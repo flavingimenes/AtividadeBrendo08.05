@@ -15,7 +15,10 @@ export default function Sucesso() {
           <Text style={styles.textoSucesso}>Cartão criado com sucesso! ✅ </Text>
           <Text style={styles.subtextoSucesso}>Seu cartão de visita digital está pronto. Compartilhe com a galera!</Text>
       </View>
-      <Button title="Criar outro cartão" onPress={() => router.push('/cadastro')} />
+
+      <TouchableOpacity onPress={() => router.replace('/')} style={styles.buttonNovoCard}>
+        <Text style={styles.buttonNovoText}>Criar outro cartão</Text>
+      </TouchableOpacity>
 
       <TouchableOpacity onPress={() => router.push('/')} style={styles.buttonWrapper}>
         <Text style={styles.buttonText}>Voltar para o início</Text>
@@ -36,7 +39,7 @@ const styles = StyleSheet.create({
     sucessoContainer: {
         width: '70%',
         padding: 20,
-        marginBottom: '70%',
+        marginBottom: '45%',
         alignItems: 'center',
     },
     textoSucesso: {
@@ -50,13 +53,28 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: 'gray',
     },
+    buttonNovoCard: {
+        backgroundColor: '#3b82f6',
+        color: '#fff',
+        fontSize: 16,
+        paddingVertical: 15,
+        paddingHorizontal: 70,
+        borderRadius: 10,
+        marginBottom: 20,
+    },
+    buttonNovoText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
     buttonWrapper: {
         width: '100%',
         marginTop: 10,
         color: '#fff',
     },
     buttonText: {
-        color: 'black',
+        color: '#3b82f6',
         fontSize: 12,
         borderRadius: 5,
         textAlign: 'center',

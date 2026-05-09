@@ -6,7 +6,7 @@ export default function index() {
   return (
     <View style={styles.container}>
 
-    <AntDesign name="idcard" size={80} color="#007AFF" />
+    <AntDesign name="idcard" size={90} color="#007AFF" />
       <Text style={styles.titulo}>DevCard</Text>
 
        <Text style={styles.subtitulo}>Seu cartão de visita digital de dev mobile</Text>
@@ -35,9 +35,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   titulo: {
-    fontSize: 46,
+    fontSize: 62,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 0,
     color: '#007AFF',
   },
     subtitulo: {
@@ -60,8 +60,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     backgroundColor: '#007AFF',
     paddingVertical: 15,
-    paddingHorizontal: 50,
-    borderRadius: 5,
+    paddingHorizontal: 70,
+    borderRadius: 10,
+    width: '100%',
+    textAlign: 'center',
   }
 
 });

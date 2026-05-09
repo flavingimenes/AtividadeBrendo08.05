@@ -2,162 +2,200 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons, MaterialIcons, FontAwesome } from '@expo/vector-icons';
+
+type PreviewParams = {
+  nome?: string;
+  cargo?: string;
+  empresa?: string;
+  anos?: string;
+  tecnologia?: string;
+  cor?: string;
+};
 
 export default function Preview() {
   const router = useRouter();
-  const { nome, cargo, empresa, anos, tecnologia, cor } = useLocalSearchParams();
+  const { nome = '', cargo = '', empresa = '', anos = '0', tecnologia = '', cor = '#ffffff' } = useLocalSearchParams<PreviewParams>();
 
-  const handleConfirm = () => {
-    router.push('/sucesso');
-  };
+  const experiencia = Number(anos) || 0;
+  let level = 'Júnior';
+  let levelColor = '#8c8c8c';
 
-  const handleEdit = () => {
-    router.back();
-  };
+  if (experiencia >= 6) {
+    level = 'Sênior';
+    levelColor = '#d4af37';
+  } else if (experiencia >= 3) {
+    level = 'Pleno';
+    levelColor = '#0077cc';
+  } else {
+    level = 'Júnior';
+    levelColor = '#8c8c8c';
+  }
+
+  let cardBackground = '#ffffff';
+  if (cor === '#56afd8') {
+    cardBackground = '#d7ecf8';
+  } else if (cor === '#4ec34e') {
+    cardBackground = '#e6f6e9';
+  } else if (cor === '#c951eb') {
+    cardBackground = '#f5e6ff';
+  } else if (cor) {
+    cardBackground = cor;
+  }
+
+  const firstLetter = nome.trim().charAt(0).toUpperCase();
+
+  const tecnologiaPrincipal = tecnologia.split(',')[0].trim();
 
   return (
-    <LinearGradient colors={['#667eea', '#764ba2']} style={styles.container}>
-      <View style={styles.innerContainer}>
-        <Text style={styles.title}>Preview do DevCard</Text>
-        <View style={[styles.card, { borderColor: cor as string }]}>
-          <View style={styles.nameContainer}>
-            <Ionicons name="person" size={30} color={cor as string} />
-            <Text style={[styles.name, { color: cor as string }]}>{nome}</Text>
-          </View>
-          <View style={styles.fieldContainer}>
-            <MaterialIcons name="work" size={20} color="#666" />
-            <Text style={styles.position}>{cargo}</Text>
-          </View>
-          {empresa && (
-            <View style={styles.fieldContainer}>
-              <FontAwesome name="building" size={20} color="#666" />
-              <Text style={styles.company}>{empresa}</Text>
-            </View>
-          )}
-          <View style={styles.fieldContainer}>
-            <Ionicons name="time" size={20} color="#666" />
-            <Text style={styles.experience}>Experiência: {anos} anos</Text>
-          </View>
-          <View style={styles.fieldContainer}>
-            <FontAwesome name="code" size={20} color="#666" />
-            <Text style={styles.tech}>Tecnologia favorita: {tecnologia}</Text>
-          </View>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={[styles.button, styles.editButton]} onPress={handleEdit}>
-            <Ionicons name="pencil" size={20} color="#fff" />
-            <Text style={styles.buttonText}>Editar Dados</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.confirmButton]} onPress={handleConfirm}>
-            <Ionicons name="checkmark" size={20} color="#fff" />
-            <Text style={styles.buttonText}>Confirmar</Text>
-          </TouchableOpacity>
-        </View>
+    <View style={styles.container}>
+
+      <Text style={styles.textoTopo}>Seu cartão!</Text>
+
+      <View style={[styles.cardContainer, { backgroundColor: cor }]}>
+
+        <Text style={[styles.firstLetter, { color: cor }]}>{firstLetter}</Text>
+
+        <Text style={styles.nome}>{nome}</Text>
+
+        <Text style={styles.cargo}>{cargo}</Text>
+
+        <Text style={styles.empresa}>{empresa}</Text>
+
+        <View
+          style={{
+            height: 1,
+            width: '80%',
+            backgroundColor: '#ced0ce81',
+            marginVertical: 14,
+          }}></View>
+
+          <Text style={styles.tecnologiaText}>Tecnologia favorita:</Text>
+        <Text style={styles.tecnologiaPrincipal}>{tecnologiaPrincipal}</Text>
+
+        <Text style={[styles.level, { backgroundColor: levelColor }]}>{level}</Text>
+
+        <Text style={styles.experiencia}>Experiência: {experiencia} anos</Text>
+
+
+
       </View>
-    </LinearGradient>
+
+      <TouchableOpacity style={styles.botaoEditar} onPress={() => router.back()}>
+        <Text style={[styles.textoBotao, { color: '#3b82f6' }]}>Editar dados</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.botaoFinalizar} onPress={() => router.replace('/sucesso')}>
+        <Text style={styles.textoBotao}>Finalizar</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#efefef',
   },
-  innerContainer: {
-    flex: 1,
+  cardContainer: {
+    borderRadius: 10,
     padding: 20,
-    paddingTop: 70,
     alignItems: 'center',
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#fff',
+    justifyContent: 'center',
+    margin: 20,
     marginBottom: 30,
-    textShadowColor: 'rgba(0, 0, 0, 0.3)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 4,
-  },
-  card: {
-    backgroundColor: '#fff',
-    borderWidth: 3,
-    borderRadius: 20,
-    padding: 25,
-    marginBottom: 30,
-    width: '100%',
-    alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.3,
-    shadowRadius: 15,
-    elevation: 10,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    width: '90%',
+    alignSelf: 'center',
+    height: 400,
   },
-  nameContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  firstLetter: {
+    fontSize: 48,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    backgroundColor: '#fff',
+    width: 80,
+    height: 80,
+    textAlign: 'center',
+    lineHeight: 80,
+    borderRadius: 40,
+    borderWidth: 3,
+    borderColor: '#90bafe',
+  },
+  textoTopo: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    marginTop: 10,
+    paddingLeft: 20,
+  },
+  nome: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginBottom: 5,
+  },
+  cargo: {
+    fontSize: 16,
+    color: '#ffffff',
+    marginBottom: 5,
+  },
+  empresa: {
+    fontSize: 14,
+    color: '#ffffffa9',
+    marginBottom: 5,
+  },
+  experiencia: {
+    fontSize: 14,
+    color: '#ffffff8f',
+  },
+  level: {
+    marginTop: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 14,
+    color: '#fff',
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  tecnologiaText: {
+    fontSize: 14,
+    color: '#ffffffe7',
+  },
+  tecnologiaPrincipal: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#ffffff',
     marginBottom: 15,
   },
-  name: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginLeft: 10,
-  },
-  fieldContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-    width: '100%',
-    justifyContent: 'center',
-  },
-  position: {
-    fontSize: 20,
-    color: '#333',
-    marginLeft: 10,
-  },
-  company: {
-    fontSize: 18,
-    color: '#666',
-    marginLeft: 10,
-  },
-  experience: {
-    fontSize: 18,
-    color: '#666',
-    marginLeft: 10,
-  },
-  tech: {
-    fontSize: 18,
-    color: '#666',
-    marginLeft: 10,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  button: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+  botaoEditar: {
+    backgroundColor: 'white',
     padding: 15,
-    borderRadius: 25,
-    flex: 1,
-    marginHorizontal: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-    elevation: 5,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    width: '90%',
+    height: 50,
+    borderWidth: 2,
+    borderColor: '#3b82f6',
   },
-  editButton: {
-    backgroundColor: '#ff6b6b',
+  botaoFinalizar: {
+    backgroundColor: '#3b82f6',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    width: '90%',
+    height: 50,
+    marginTop: 10,
   },
-  confirmButton: {
-    backgroundColor: '#4ecdc4',
-  },
-  buttonText: {
+  textoBotao: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
-    marginLeft: 10,
   },
 });

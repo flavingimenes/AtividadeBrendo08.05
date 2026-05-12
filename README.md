@@ -37,9 +37,9 @@ Nesta tela, o utilizador fornece os dados técnicos e pessoais para a geração 
   <img src="imagensProjeto/Img2.jpeg" width="300" alt="Formulário Preenchido">
 </p>
 
-* **Estado Inicial:** Campos limpos e placeholders indicativos.
-* **Estado de Erro:** Feedbacks visuais em vermelho destacando campos obrigatórios ou formatos inválidos.
-* **Formulário Preenchido:** Dados validados e seleção de cor ativa, pronto para a geração do preview.
+* **1 - Estado Inicial:** Campos limpos e placeholders indicativos.
+* **2 - Estado de Erro:** Feedbacks visuais em vermelho destacando campos obrigatórios ou formatos inválidos.
+* **3 - Formulário Preenchido:** Dados validados e seleção de cor ativa, pronto para a geração do preview.
 
 ---
 ### 3. Visualização do Cartão (Preview)

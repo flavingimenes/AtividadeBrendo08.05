@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textoSucesso: {
-        fontSize: 22,
+        fontSize: 28,
         fontWeight: 'bold',
         marginBottom: 20,
         textAlign: 'center',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     },
     buttonNovoText: {
         color: '#fff',
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: 'bold',
         textAlign: 'center',
     },
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#3b82f6',
-        fontSize: 12,
+        fontSize: 16,
         borderRadius: 5,
         textAlign: 'center',
     },

@@ -67,7 +67,9 @@ export default function Preview() {
             width: '80%',
             backgroundColor: '#ced0ce81',
             marginVertical: 14,
-          }}></View>
+          }}>
+
+          </View>
 
           <Text style={styles.tecnologiaText}>Tecnologia favorita:</Text>
         <Text style={styles.tecnologiaPrincipal}>{tecnologiaPrincipal}</Text>

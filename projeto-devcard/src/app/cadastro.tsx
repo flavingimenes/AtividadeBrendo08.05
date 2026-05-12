@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 
 export default function Cadastro() {
   const router = useRouter();
@@ -55,7 +55,16 @@ export default function Cadastro() {
 
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+    >
+      <ScrollView 
+          bounces={false}
+          showsVerticalScrollIndicator={false}
+        >
+
+    <View >
 
         <Text style={styles.textoTopo}>
             Cadastro
@@ -75,7 +84,6 @@ export default function Cadastro() {
       />
           
      </View>
-
 
       <View>
         <Text style={styles.textoInput}>
@@ -169,6 +177,8 @@ export default function Cadastro() {
     </View>
 
     </View>
+    </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -176,11 +186,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#efefef',
-        padding: 20,
+        padding: 25,
         paddingTop: 30,
     },
     textoTopo: {
-      fontSize: 32,
+      fontSize: 36,
       fontWeight: 'bold',
     },
     subtextoTopo: {
@@ -193,11 +203,11 @@ const styles = StyleSheet.create({
         borderColor: '#8f8f8f61',
         backgroundColor: '#fff',
         borderRadius: 10,
-        padding: 8,
+        padding: 12,
         marginBottom: 5,
     },
     textoInput: {
-        fontSize: 14,
+        fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 5,
     },
@@ -206,6 +216,7 @@ const styles = StyleSheet.create({
     },
     erroTexto: {
         color: 'red',
+        fontSize: 14,
     },
     erroGeral: {
         color: 'red',
@@ -249,7 +260,7 @@ const styles = StyleSheet.create({
     button: {
       justifyContent: 'center',
       alignSelf: 'center',
-      backgroundColor: '#1b77c7',
+      backgroundColor: '#3b82f6',
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',

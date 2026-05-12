@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { styles } from '../styles/cadastro';
 
 export default function Cadastro() {
   const router = useRouter();
@@ -11,33 +12,46 @@ export default function Cadastro() {
     const [anos, setAnos] = useState('');
     const [tecnologia, setTecnologia] = useState('');
     const [cor, setCor] = useState('#000000');
-    const [erro, setErro] = useState('');
-    const [erroGeral, setErroGeral] = useState('');
+    const [erroNome, setErroNome] = useState('');
+    const [erroCargo, setErroCargo] = useState('');
+    const [erroAnos, setErroAnos] = useState('');
+    const [erroTecnologia, setErroTecnologia] = useState('');
+    const [erroCor, setErroCor] = useState('');
 
   const handlePreview = () => {
-    if (nome.length < 3) {
-      setErroGeral('Nome deve ter pelo menos 3 caracteres');
-      return;
+    let hasError = false;
+    setErroNome('');
+    setErroCargo('');
+    setErroAnos('');
+    setErroTecnologia('');
+    setErroCor('');
+
+    if (nome.trim().length < 3) {
+      setErroNome('Nome deve ter pelo menos 3 caracteres');
+      hasError = true;
     }
     if (!cargo.trim()) {
-      setErroGeral('Cargo é obrigatório');
-      return;
+      setErroCargo('Cargo é obrigatório');
+      hasError = true;
     }
     if (!anos.trim()) {
-      setErroGeral('Anos de experiência é obrigatório');
-      return;
+      setErroAnos('Anos de experiência é obrigatório');
+      hasError = true;
     }
     if (!tecnologia.trim()) {
-      setErroGeral('Tecnologias favoritas são obrigatórias');
-      return;
+      setErroTecnologia('Tecnologias favoritas são obrigatórias');
+      hasError = true;
     }
     if (cor === '#000000') {
-      setErroGeral('Selecione uma cor para o cartão');
+      setErroCor('Selecione uma cor para o cartão');
+      hasError = true;
+    }
+
+    if (hasError) {
       return;
     }
-    setErroGeral('');
-    router.push({pathname: '/preview',
-     params: { nome, cargo, empresa, anos, tecnologia, cor }});
+
+    router.push({ pathname: '/preview', params: { nome, cargo, empresa, anos, tecnologia, cor } });
   };
 
   const validarExperiencia = (valor: string) => {
@@ -45,11 +59,11 @@ export default function Cadastro() {
     setAnos(apenasNumeros);
 
     if (apenasNumeros === '') {
-        setErro('Campo obrigatório');
-    } else if (parseInt(apenasNumeros) < 0) {
-        setErro('O valor deve ser maior que 0');
+        setErroAnos('Campo obrigatório');
+    } else if (parseInt(apenasNumeros) <= 0) {
+        setErroAnos('O valor deve ser maior que 0');
     } else {
-        setErro('');
+        setErroAnos('');
     }
   };
 
@@ -79,10 +93,9 @@ export default function Cadastro() {
         </Text>
          <TextInput
             onChangeText={setNome}
-            style={
-              styles.input}
+            style={[styles.input, erroNome ? styles.inputError : null]}
       />
-          
+      <Text style={erroNome ? styles.erroTexto : styles.erroTextoHidden}>{erroNome || ' '}</Text>
      </View>
 
       <View>
@@ -91,8 +104,9 @@ export default function Cadastro() {
         </Text>
          <TextInput
             onChangeText={setCargo}
-            style={styles.input}
+            style={[styles.input, erroCargo ? styles.inputError : null]}
           />
+      <Text style={erroCargo ? styles.erroTexto : styles.erroTextoHidden}>{erroCargo || ' '}</Text>
      </View>
 
 
@@ -102,7 +116,7 @@ export default function Cadastro() {
         </Text>
          <TextInput
             onChangeText={setEmpresa}
-            style={styles.input}
+            style={{ ...styles.input, marginBottom: 20 }}
           />
      </View>
 
@@ -111,14 +125,14 @@ export default function Cadastro() {
         <Text style={styles.textoInput}>Anos de Experiência</Text>
       
         <TextInput
-        style={[styles.input, erro ? styles.inputError : null]}
+        style={[styles.input, erroAnos ? styles.inputError : null]}
         value={anos}
         onChangeText={validarExperiencia}
         keyboardType="numeric"
         maxLength={2}
       />
+    <Text style={erroAnos ? styles.erroTexto : styles.erroTextoHidden}>{erroAnos || ' '}</Text>
 
-      {erro ? <Text style={styles.erroTexto}>{erro}</Text> : null}
     </View>
 
 
@@ -128,10 +142,11 @@ export default function Cadastro() {
         </Text>
          <TextInput
             onChangeText={setTecnologia}
-            style={styles.input}
+            style={[styles.input, erroTecnologia ? styles.inputError : null]}
             placeholder="Ex: React, TypeScript, Node.js"
             placeholderTextColor="#8f8f8f"
           />
+      <Text style={erroTecnologia ? styles.erroTexto : styles.erroTextoHidden}>{erroTecnologia || ' '}</Text>
      </View>
 
 
@@ -163,11 +178,8 @@ export default function Cadastro() {
         </TouchableOpacity>
 
       </View>
+      {erroCor ? <Text style={styles.erroTexto}>{erroCor}</Text> : null}
     </View>
-
-       {erroGeral && (
-          <Text style={styles.erroGeral}>{erroGeral}</Text>
-        )}
 
     <View style={styles.buttonWrapper}>
       <TouchableOpacity onPress={handlePreview} style={styles.button}
@@ -182,89 +194,3 @@ export default function Cadastro() {
   );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#efefef',
-        padding: 25,
-        paddingTop: 30,
-    },
-    textoTopo: {
-      fontSize: 36,
-      fontWeight: 'bold',
-    },
-    subtextoTopo: {
-      fontSize: 16,
-      color: 'gray',
-      marginBottom: 20,
-    },
-    input: {
-        borderWidth: 1,
-        borderColor: '#8f8f8f61',
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        padding: 12,
-        marginBottom: 5,
-    },
-    textoInput: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        marginBottom: 5,
-    },
-    inputError: {
-        borderColor: 'red',
-    },
-    erroTexto: {
-        color: 'red',
-        fontSize: 14,
-    },
-    erroGeral: {
-        color: 'red',
-        fontSize: 14,
-        textAlign: 'center',
-        marginBottom: 10,
-    },
-    coresBotao: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 20,
-    },
-    bolaCores: {
-        width: 20,
-        height: 20,
-        borderRadius: 10,
-        marginRight: 10,
-        padding: 0,
-    },
-    colorButton: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        flex: 1,
-        padding: 10,
-        marginHorizontal: 4,
-        borderRadius: 10,
-        alignItems: 'center',
-    },
-    colorButtonSelected: {
-        borderWidth: 2,
-        backgroundColor: '#f0f8ff',
-    },
-    buttonText: {
-        color: '#000000',
-    },
-    buttonWrapper: {
-        width: '100%',
-        marginTop: 20,
-    },
-    button: {
-      justifyContent: 'center',
-      alignSelf: 'center',
-      backgroundColor: '#3b82f6',
-        padding: 15,
-        borderRadius: 10,
-        alignItems: 'center',
-        width: '90%',
-        height: 50,
-    }
-});

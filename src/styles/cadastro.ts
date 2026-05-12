@@ -79,7 +79,7 @@ export const styles = StyleSheet.create({
     },
     buttonWrapper: {
         width: '100%',
-        marginTop: 20,
+        marginTop: 10,
     },
     button: {
       justifyContent: 'center',

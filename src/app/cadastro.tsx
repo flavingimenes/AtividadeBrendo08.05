@@ -178,7 +178,7 @@ export default function Cadastro() {
         </TouchableOpacity>
 
       </View>
-      {erroCor ? <Text style={styles.erroTexto}>{erroCor}</Text> : null}
+      <Text style={erroCor ? styles.erroTexto : styles.erroTextoHidden}>{erroCor || ' '}</Text>
     </View>
 
     <View style={styles.buttonWrapper}>

@@ -33,8 +33,8 @@ Nesta tela, o utilizador fornece os dados técnicos e pessoais para a geração 
 
 <p align="center">
   <img src="imagensProjeto/Img2.jpeg" width="250" alt="Estado Inicial">
-  <img src="imagensProjeto/Img2.jpeg" width="250" alt="Estado de Erro">
-  <img src="imagensProjeto/Img2.jpeg" width="250" alt="Formulário Preenchido">
+  <img src="imagensProjeto/Img2.1.jpeg" width="250" alt="Estado de Erro">
+  <img src="imagensProjeto/Img2.2.jpeg" width="250" alt="Formulário Preenchido">
 </p>
 
 * **1 - Estado Inicial:** Campos limpos e placeholders indicativos.

@@ -1,6 +1,6 @@
 # DevCard - Atividade Prática - Aplicações Móveis
 ### 1. Home (Página Inicial)
-<img src="imagensProjeto/Img1.jpeg" width="300">
+<img src="imagensProjeto/Img1.jpeg" width="250">
 
 
 A porta de entrada do **DevCard**, focada em oferecer uma experiência simples e direta ao usuário.
@@ -43,7 +43,7 @@ Nesta tela, o utilizador fornece os dados técnicos e pessoais para a geração 
 
 ---
 ### 3. Visualização do Cartão (Preview)
-<img src="imagensProjeto/Img3.jpeg" width="300">
+<img src="imagensProjeto/Img3.jpeg" width="250">
 
 Esta tela renderiza dinamicamente o cartão de visita digital com base nos dados recebidos, transformando informações brutas em uma interface visual elegante.
 
@@ -56,7 +56,7 @@ Esta tela renderiza dinamicamente o cartão de visita digital com base nos dados
 ---
 
 ### 4. Conclusão (Sucesso)
-<img src="imagensProjeto/Img4.jpeg" width="300">
+<img src="imagensProjeto/Img4.jpeg" width="250">
 
 A tela final que confirma a criação do cartão e oferece opções para reiniciar o fluxo ou retornar ao início.
 

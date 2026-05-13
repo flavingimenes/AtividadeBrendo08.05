@@ -64,3 +64,15 @@ A tela final que confirma a criação do cartão e oferece opções para reinici
 - **Feedback Visual Positivo:** Utiliza elementos visuais (emoji/imagem) e mensagens claras para confirmar que a operação foi realizada com êxito.
 - **Gerenciamento de Navegação:** Utiliza o `router.replace('/')` no botão de novo cartão, garantindo que o histórico de navegação anterior seja resetado, impedindo que o usuário volte acidentalmente para os dados do cartão já finalizado.
 - **UX (Experiência do Usuário):** Fornece uma saída clara para o fluxo, permitindo que o usuário escolha entre criar um novo perfil ou apenas voltar à tela inicial.
+
+---
+
+### 5. Documentação Técnica (Sobre)
+<img src="imagensProjeto/Img5.jpeg" width="250">
+Uma tela dedicada a detalhar a arquitetura do projeto e as tecnologias aplicadas em cada etapa do desenvolvimento. Mais do que uma página informativa, é um exemplo de UI interativa e dinâmica.
+
+**Destaques Técnicos:**
+- **Componente Accordion (Colapsável):** Implementação de uma lista de tópicos que se expandem e contraem, otimizando o espaço da tela e melhorando a legibilidade.
+- **LayoutAnimation:** Uso da API nativa `LayoutAnimation` para criar transições suaves e fluidas entre os estados aberto/fechado dos cards, garantindo uma sensação de "app premium".
+- **Renderização Condicional de Texto:** Sistema inteligente que identifica palavras entre crases (ex: `React Native`) no código e as estiliza de forma diferenciada, simulando um realce de sintaxe de código.
+- **Arquitetura de Dados:** Centralização das informações em um objeto de configuração (`topicosTecnicos`), facilitando a manutenção e escalabilidade do conteúdo.

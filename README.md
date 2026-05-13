@@ -43,7 +43,15 @@ Nesta tela, o utilizador fornece os dados técnicos e pessoais para a geração 
 
 ---
 ### 3. Visualização do Cartão (Preview)
-<img src="imagensProjeto/Img3.jpeg" width="250">
+<p align="center">
+<img src="imagensProjeto/Img3.jpeg" width="250" alt="Visualização do cartão">
+<img src="imagensProjeto/Img3.1.jpeg.jpeg" width="250" alt="Cartão sendo copiado">
+<img src="imagensProjeto/Img3.2.jpegjpeg" width="250" alt="Cópia do cartão">
+</p >
+
+* **1 - Visualização do cartão:** Cartão sendo visuzalidao dinamicamente.
+* **2 - Cartão sendo copiado:** Feedback visual mostrando que o cartão foi copiado com sucesso.
+* **3 - Cópia do cartão:** Resultado da cópia do cartão, sendo colado no aplicativo de notas nativo do iphone.
 
 Esta tela renderiza dinamicamente o cartão de visita digital com base nos dados recebidos, transformando informações brutas em uma interface visual elegante.
 

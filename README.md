@@ -45,8 +45,8 @@ Nesta tela, o utilizador fornece os dados técnicos e pessoais para a geração 
 ### 3. Visualização do Cartão (Preview)
 <p align="center">
 <img src="imagensProjeto/Img3.jpeg" width="250" alt="Visualização do cartão">
-<img src="imagensProjeto/Img3.1.jpeg.jpeg" width="250" alt="Cartão sendo copiado">
-<img src="imagensProjeto/Img3.2.jpegjpeg" width="250" alt="Cópia do cartão">
+<img src="imagensProjeto/Img3.1.jpeg" width="250" alt="Cartão sendo copiado">
+<img src="imagensProjeto/Img3.2.jpeg" width="250" alt="Cópia do cartão">
 </p >
 
 * **1 - Visualização do cartão:** Cartão sendo visuzalidao dinamicamente.
